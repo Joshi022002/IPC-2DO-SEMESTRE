@@ -49,6 +49,10 @@ public class CALCULADORA {
         //variables para la desviacion estandar
         double desvestandar=0;
         //
+        //scanner enter
+        String botonenter="";
+        Scanner enter=new Scanner(System.in);
+        //
         Scanner operaciones = new Scanner(System.in);
         int [][] matriz = new int [q][w];
         double resultado;
@@ -176,10 +180,12 @@ public class CALCULADORA {
                                             factorial=n1*factorial*(n1-1);
                                             }
                                         for(n1=0;n1<=ndatos;n1++){
-                                            sumatoriaSeno+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/(2*n1+1));
+                                            sumatoriaSeno+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/factorial*(2*n1+1));
                                         }
                                         
-                                        System.out.println(sumatoriaSeno);
+                                        System.out.println("sen("+x+") ="+sumatoriaSeno);
+                                        System.out.print("presione enter para continuar... ");
+                                        botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 2:
@@ -201,7 +207,9 @@ public class CALCULADORA {
                                             }
                                             sumatoriaCoseno += (Math.pow(-1,n2) * Math.pow(x,2 * n2)/factorial2*(2 * n2));
                                         }
-                                        System.out.println(sumatoriaCoseno);
+                                        System.out.println("cos("+x+") ="+sumatoriaCoseno);
+                                        System.out.print("presione enter para continuar... ");
+                                        botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 3:
@@ -214,15 +222,29 @@ public class CALCULADORA {
                                         double sumatoriatangente=0;
                                         x*=Math.PI/180;
                                         double sumatoriaSeno1=0;
+                                        double factorialsen=0;
                                         for(n1=0;n1<=ndatos;n1++){
-                                            sumatoriaSeno1+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/(2*n1+1));
+                                            if(n1==0){
+                                            n1=1;
+                                            }else{
+                                            factorialsen=n1*factorialsen*(n1-1);
+                                            }
+                                            sumatoriaSeno1+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/factorialsen*(2*n1+1));
                                         }
+                                        double factorialcos=0;
                                         double sumatoriaCoseno1=0;
                                         for(n2=0;n2<=ndatos;n2++){
-                                            sumatoriaCoseno1 += (Math.pow(-1,n2) * Math.pow(x,2 * n2)/(2 * n2));
+                                            if(n2==0){
+                                            n2=1;
+                                            }else{
+                                            factorialcos=n2*factorialcos*(n2-1);
+                                            }
+                                            sumatoriaCoseno1 += (Math.pow(-1,n2) * Math.pow(x,2 * n2)/factorialcos*(2 * n2));
                                         }
                                         sumatoriatangente=sumatoriaSeno1/sumatoriaCoseno1;
-                                        System.out.println(sumatoriatangente);
+                                        System.out.println("tan"+x+") ="+sumatoriatangente);
+                                        System.out.print("presione enter para continuar... ");
+                                        botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 4:
