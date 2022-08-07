@@ -1,18 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package calculadora;
 import java.util.Scanner;
-/**
- *
- * @author josia
- */
+
 public class CALCULADORA {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // TODO code application logic here
         int opcion=0;
@@ -91,6 +82,7 @@ public class CALCULADORA {
                                 opcion=leer.nextInt();
                                 switch(opcion) {
                                     case 1:
+                                        //opcion suma
                                         System.out.println("----------------------------------------------------------");
                                         System.out.print("ingrese el primer sumando: ");
                                         numero1=leer.nextInt();
@@ -102,6 +94,7 @@ public class CALCULADORA {
                                          System.out.println("----------------------------------------------------------");
                                         break;
                                     case 2:
+                                        // opcion resta
                                         System.out.println("----------------------------------------------------------");
                                         System.out.print("ingrese el minuendo: ");
                                         numero1=leer.nextInt();
@@ -112,6 +105,7 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 3:
+                                        // opcion multiplicacion
                                         System.out.println("----------------------------------------------------------");
                                         System.out.print("ingrese el multiplicando: ");
                                         numero1=leer.nextInt();
@@ -122,20 +116,24 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 4:
+                                        //opcion division
                                         System.out.println("----------------------------------------------------------");
                                         System.out.print("ingrese el dividendo: ");
                                         numero1=leer.nextInt();
                                         System.out.print("ingrese el divisor: ");
                                         numero2=leer.nextInt();
+                                        
                                         if(numero2==0){
-                                        System.out.println("no se puede dividir dentro de cero");
+                                            System.out.println("no se puede dividir dentro de cero");
                                         }else{
-                                        resultado=numero1/numero2;
-                                        System.out.print("el resultado de la suma es: "+resultado);
-                                        System.out.println("----------------------------------------------------------");
+                                            resultado=numero1/numero2;
+                                            System.out.print("el resultado de la suma es: "+resultado);
+                                            System.out.println("----------------------------------------------------------");
                                         }
+                                        
                                         break;
                                     case 5:
+                                        //salir del menu aritmetica
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("has salido del menu ARITMETICA");
                                         System.out.println("----------------------------------------------------------");
@@ -148,6 +146,7 @@ public class CALCULADORA {
                             opcion = 0;
                         break;
 			case 2:
+                            // menu 2 trigonometria
                             while(opcion!=4){
                                 System.out.println("_____________________________________________________");
 				System.out.println("|                    trigonometria                   |");
@@ -164,43 +163,47 @@ public class CALCULADORA {
                                 opcion=leer.nextInt();
                                 switch(opcion){
                                     case 1:
+                                        //opcion seno
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Seno");
                                         System.out.println("ingrese el valor para x: ");
                                         x = Double.valueOf(leer.next());
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextInt();
-                                        x*=frac(Math.PI,180);
-                                        double sumatoriaSeno=0;
+                                        double sen( x, i) {
+                                        x *= frac(Math.PI,180);
+                                        double sumatoria = 0;
                                         for(int n = 0; n <= i ; n ++) {
-                                            sumatoriaSeno += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
+                                            sumatoria += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
-                                 
-                                        System.out.println("sen("+ncorridas+") ="+sumatoriaSeno);
+                                        return sumatoria;
+                                        }
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 2:
+                                        // opcion coseno
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Coseno");
                                         System.out.println("ingrese el valor para x: ");
                                         x=leer.nextInt();
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextDouble();
-                                        x*=Math.PI/180;
-                                        double n2=0;
-                                        double sumatoriaCoseno=0;
-                                        double factorial2=0;
+                                        double cos(double x,int i) {
+                                        x *= frac(Math.PI,180);
+                                        double sumatoriacos = 0;
                                         for(int n = 0; n <= i; n ++) {
-                                            sumatoriaCoseno += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
+                                            sumatoriacos += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
-                                        System.out.println("cos("+x+") ="+sumatoriaCoseno);
+                                        return sumatoriacos;
+                                        System.out.println("cos("+x+") ="+sumatoriacos);
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 3:
+                                        //opcion tangente
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Tangente");
                                         System.out.println("ingrese el valor para x: ");
@@ -211,13 +214,16 @@ public class CALCULADORA {
                                         double n3=0;
                                         x*=Math.PI/180;
                                         double sumatoriaSeno1=0;
+                                        
                                         for(int n = 0; n <= i ; n ++) {
                                             sumatoriaSeno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
+                                        
                                         double sumatoriaCoseno1=0;
                                         for(int n = 0; n <= i; n ++) {
                                             sumatoriaCoseno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
+                                        
                                         sumatoriatangente=sumatoriaSeno1/sumatoriaCoseno1;
                                         System.out.println("tan"+x+") ="+sumatoriatangente);
                                         System.out.print("presione enter para continuar... ");
@@ -225,6 +231,7 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 4:
+                                        //salir del menu aritmetica
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("has salido del menu TRIGONOMETRIA");
                                          System.out.println("----------------------------------------------------------");
@@ -253,6 +260,7 @@ public class CALCULADORA {
                                 opcion=leer.nextInt();
                                 switch(opcion){
                                     case 1:
+                                        // opcion promedio
                                        System.out.println("----------------------------------------------------------");
                                        System.out.println("ha seleccionado la opcion media");
                                        System.out.println("ingrese una lista de numeros separadas por comas");
@@ -269,6 +277,7 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 2:
+                                        //opcion varianza
                                        System.out.println("----------------------------------------------------------");
                                        System.out.println("ha seleccionado la opcion varianza");
                                        System.out.println("ingrese una lista de numeros separadas por comas");
@@ -294,6 +303,7 @@ public class CALCULADORA {
                                        System.out.println("----------------------------------------------------------");
                                         break;
                                     case 3:
+                                        //opcion desviacion estandar
                                        System.out.println("----------------------------------------------------------");
                                        System.out.println("ha seleccionado la opcion desviacion estandar");
                                        System.out.println("ingrese una lista de numeros separadas por comas");
@@ -320,6 +330,7 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 4:
+                                        //salir del menu estadistica
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("has salido del menu ESTADISTICA");
                                         break;
@@ -350,6 +361,7 @@ public class CALCULADORA {
                                 opcion=leer.nextInt();
                                 switch(opcion){
                                     case 1:
+                                        //opcion gauss jordan
                                         System.out.print("ingrese el tamaño del sistema de ecuaciones lineales: ");
                                         q=leer.nextInt();
                                         w=leer.nextInt();
@@ -370,12 +382,14 @@ public class CALCULADORA {
                                 opcion = 0;
                         break;   
                         case 5:
+                            //salir del programa calculadora
                                 System.out.println("__________________________________________________________");
 				System.out.println("Gracias por Utilizar la aplicacion -calculadora-");
                                 System.out.println("__________________________________________________________");
                                 System.exit(0);
 			break;
                         default:
+                                //ingreso una opcion invalida
                                 System.out.println("__________________________________________________________");
 				System.out.println("Seleccione una opcion valida");
                                 System.out.println("__________________________________________________________");
@@ -384,11 +398,4 @@ public class CALCULADORA {
     }while(opcion!=5||opcion!=4);
         } 
     //clases para funcion trigonometrica
-    double fact(int n) {
-		if(n == 0) return 1;
-		return n * fact(n - 1);
-	}
-	double frac(double a,double b) {
-		return a / b;
-	}
-        }
+}
