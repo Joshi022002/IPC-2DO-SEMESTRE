@@ -38,7 +38,7 @@ public class CALCULADORA {
         float contadornumeros2=0;
         //
         //variables para la operacion seno
-        double ndatos=0;
+        int ndatos=0;
         double ncorridas=0;
         int partearriba=0;
         int parteabajo=0;
@@ -167,23 +167,16 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Seno");
                                         System.out.println("ingrese el valor para x: ");
-                                        ncorridas=leer.nextDouble();
+                                        x = Double.valueOf(leer.next());
                                         System.out.println("ingrese el valor para i: ");
-                                        ndatos=leer.nextDouble();
-                                        x*=Math.PI/180;
-                                        double n1=0;
+                                        i=leer.nextInt();
+                                        x*=frac(Math.PI,180);
                                         double sumatoriaSeno=0;
-                                        double factorial=0;
-                                            if(n1==0){
-                                            n1=1;
-                                            }else{
-                                            factorial=n1*factorial*(n1-1);
-                                            }
-                                        for(n1=0;n1<=ndatos;n1++){
-                                            sumatoriaSeno+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/factorial*(2*n1+1));
+                                        for(int n = 0; n <= i ; n ++) {
+                                            sumatoriaSeno += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
-                                        
-                                        System.out.println("sen("+x+") ="+sumatoriaSeno);
+                                 
+                                        System.out.println("sen("+ncorridas+") ="+sumatoriaSeno);
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
                                         System.out.println("----------------------------------------------------------");
@@ -192,20 +185,15 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Coseno");
                                         System.out.println("ingrese el valor para x: ");
-                                        x=leer.nextDouble();
+                                        x=leer.nextInt();
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextDouble();
                                         x*=Math.PI/180;
                                         double n2=0;
                                         double sumatoriaCoseno=0;
                                         double factorial2=0;
-                                        for(n2=0;n2<=ndatos;n2++){
-                                            if(n2==0){
-                                            n2=1;
-                                            }else{
-                                            factorial2=n2*factorial2*(n2-1);
-                                            }
-                                            sumatoriaCoseno += (Math.pow(-1,n2) * Math.pow(x,2 * n2)/factorial2*(2 * n2));
+                                        for(int n = 0; n <= i; n ++) {
+                                            sumatoriaCoseno += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
                                         System.out.println("cos("+x+") ="+sumatoriaCoseno);
                                         System.out.print("presione enter para continuar... ");
@@ -220,26 +208,15 @@ public class CALCULADORA {
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextInt();
                                         double sumatoriatangente=0;
+                                        double n3=0;
                                         x*=Math.PI/180;
                                         double sumatoriaSeno1=0;
-                                        double factorialsen=0;
-                                        for(n1=0;n1<=ndatos;n1++){
-                                            if(n1==0){
-                                            n1=1;
-                                            }else{
-                                            factorialsen=n1*factorialsen*(n1-1);
-                                            }
-                                            sumatoriaSeno1+=(Math.pow(-1, n1)*Math.pow(x,2*n1+1)/factorialsen*(2*n1+1));
+                                        for(int n = 0; n <= i ; n ++) {
+                                            sumatoriaSeno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
-                                        double factorialcos=0;
                                         double sumatoriaCoseno1=0;
-                                        for(n2=0;n2<=ndatos;n2++){
-                                            if(n2==0){
-                                            n2=1;
-                                            }else{
-                                            factorialcos=n2*factorialcos*(n2-1);
-                                            }
-                                            sumatoriaCoseno1 += (Math.pow(-1,n2) * Math.pow(x,2 * n2)/factorialcos*(2 * n2));
+                                        for(int n = 0; n <= i; n ++) {
+                                            sumatoriaCoseno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
                                         sumatoriatangente=sumatoriaSeno1/sumatoriaCoseno1;
                                         System.out.println("tan"+x+") ="+sumatoriatangente);
@@ -282,10 +259,10 @@ public class CALCULADORA {
                                        cadena=operaciones.nextLine();
                                        String numerosseparados[]=cadena.split(",");
                                        for(int posicionnumero=0; posicionnumero<numerosseparados.length;posicionnumero++){
-                                       numero=numerosseparados[posicionnumero]; 
-                                       int numeroconvertido=Integer.parseInt(numero);
-                                       sumapromedio=sumapromedio+numeroconvertido;
-                                       contadornumeros=contadornumeros+1;
+                                           numero=numerosseparados[posicionnumero]; 
+                                           int numeroconvertido=Integer.parseInt(numero);
+                                           sumapromedio=sumapromedio+numeroconvertido;
+                                           contadornumeros=contadornumeros+1;
                                        }
                                        promedio=sumapromedio/contadornumeros;
                                         System.out.println("promedio ("+cadena+ ") = "+promedio);
@@ -298,10 +275,10 @@ public class CALCULADORA {
                                        cadena=operaciones.nextLine();
                                        String numerosseparados2[]=cadena.split(",");
                                        for(int posicionnumero=0; posicionnumero<numerosseparados2.length;posicionnumero++){
-                                       numero=numerosseparados2[posicionnumero]; 
-                                       int numeroconvertido=Integer.parseInt(numero);
-                                       sumapromedio=sumapromedio+numeroconvertido;
-                                       contadornumeros=contadornumeros+1;
+                                           numero=numerosseparados2[posicionnumero]; 
+                                           int numeroconvertido=Integer.parseInt(numero);
+                                           sumapromedio=sumapromedio+numeroconvertido;
+                                           contadornumeros=contadornumeros+1;
                                        }
                                        promedio=sumapromedio/contadornumeros;
                                        for(int posicionnumero2=0;posicionnumero2<numerosseparados2.length;posicionnumero2++){
@@ -405,5 +382,13 @@ public class CALCULADORA {
                         break;
 		}
     }while(opcion!=5||opcion!=4);
-        }      
-}
+        } 
+    //clases para funcion trigonometrica
+    double fact(int n) {
+		if(n == 0) return 1;
+		return n * fact(n - 1);
+	}
+	double frac(double a,double b) {
+		return a / b;
+	}
+        }
