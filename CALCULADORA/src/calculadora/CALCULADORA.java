@@ -9,8 +9,6 @@ public class CALCULADORA {
         int opcion=0;
         int numero1;
         int numero2;
-        double x=0;
-        double i = 0;
         int j = 0;
         int y = 0;
         int q = 0;
@@ -148,6 +146,11 @@ public class CALCULADORA {
 			case 2:
                             // menu 2 trigonometria
                             while(opcion!=4){
+                                double x=0;
+                                double i = 0;
+                                int fact=0;
+                                int factres=0;
+                                double angulo=0;
                                 System.out.println("_____________________________________________________");
 				System.out.println("|                    trigonometria                   |");
                                 System.out.println("|____________________________________________________|");
@@ -163,23 +166,25 @@ public class CALCULADORA {
                                 opcion=leer.nextInt();
                                 switch(opcion){
                                     case 1:
+                                        
                                         //opcion seno
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Seno");
                                         System.out.println("ingrese el valor para x: ");
                                         x = Double.valueOf(leer.next());
+                                        angulo=x;
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextInt();
-                                        double sen( x, i) {
                                         x *= frac(Math.PI,180);
-                                        double sumatoria = 0;
-                                        for(int n = 0; n <= i ; n ++) {
-                                            sumatoria += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
+                                        double sumatoriasen=0;
+                                        for(int n=0; n<=i;n++){
+                                          sumatoriasen += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
-                                        return sumatoria;
-                                        }
+                                        System.out.println("sen ("+angulo+") ="+sumatoriasen);
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
+                                        x=0;
+                                        i=0;
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 2:
@@ -187,19 +192,21 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Coseno");
                                         System.out.println("ingrese el valor para x: ");
-                                        x=leer.nextInt();
+                                        x = Double.valueOf(leer.next());
+                                        angulo=x;
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextDouble();
-                                        double cos(double x,int i) {
                                         x *= frac(Math.PI,180);
-                                        double sumatoriacos = 0;
+                                        float sumatoriacos = 0;
                                         for(int n = 0; n <= i; n ++) {
-                                            sumatoriacos += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
+                                        sumatoriacos += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
-                                        return sumatoriacos;
-                                        System.out.println("cos("+x+") ="+sumatoriacos);
+                                        System.out.println("cos ("+angulo+") ="+sumatoriacos);
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
+                                        x=0;
+                                        i=0;
+                                        angulo=0;
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 3:
@@ -207,27 +214,27 @@ public class CALCULADORA {
                                         System.out.println("----------------------------------------------------------");
                                         System.out.println("ha seleccionado la opcion Tangente");
                                         System.out.println("ingrese el valor para x: ");
-                                        x=leer.nextInt();
+                                        x = Double.valueOf(leer.next());
+                                        angulo=x;
                                         System.out.println("ingrese el valor para i: ");
                                         i=leer.nextInt();
-                                        double sumatoriatangente=0;
-                                        double n3=0;
-                                        x*=Math.PI/180;
-                                        double sumatoriaSeno1=0;
-                                        
-                                        for(int n = 0; n <= i ; n ++) {
-                                            sumatoriaSeno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
+                                        x *= frac(Math.PI,180);
+                                        sumatoriasen=0;
+                                        for(int n=0; n<=i;n++){
+                                          sumatoriasen += frac(Math.pow(-1,n) * Math.pow(x,2 * n + 1),fact(2 * n + 1));
                                         }
-                                        
-                                        double sumatoriaCoseno1=0;
+                                        sumatoriacos = 0;
                                         for(int n = 0; n <= i; n ++) {
-                                            sumatoriaCoseno1 += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
+                                        sumatoriacos += frac(Math.pow(-1,n) * Math.pow(x,2 * n),fact(2 * n));
                                         }
-                                        
-                                        sumatoriatangente=sumatoriaSeno1/sumatoriaCoseno1;
-                                        System.out.println("tan"+x+") ="+sumatoriatangente);
+                                        double sumatoriatan=0;
+                                        sumatoriatan=frac(sumatoriasen, sumatoriacos);
+                                        System.out.println("cos ("+angulo+") ="+sumatoriatan);
+                                        System.out.println("");
                                         System.out.print("presione enter para continuar... ");
                                         botonenter=enter.nextLine();
+                                        x=0;
+                                        i=0;
                                         System.out.println("----------------------------------------------------------");
                                         break;
                                     case 4:
@@ -398,4 +405,13 @@ public class CALCULADORA {
     }while(opcion!=5||opcion!=4);
         } 
     //clases para funcion trigonometrica
-}
+
+    public static int fact(int n) {
+        if(n == 0) return 1;
+        return n * fact(n - 1); 
+    }
+        
+    public static double frac(double a,double b) {
+		return a / b;
+	}
+        }
